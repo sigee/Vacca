@@ -12,4 +12,13 @@ class Router
     {
 
     }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function handle($request)
+    {
+        return null;
+    }
 }

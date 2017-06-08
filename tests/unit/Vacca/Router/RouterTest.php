@@ -25,4 +25,9 @@ class RouterTest extends TestCase
     {
         $this->router->get(null, null);
     }
+
+    function testShouldHaveAHandleMethod()
+    {
+        $this->router->handle(null);
+    }
 }
