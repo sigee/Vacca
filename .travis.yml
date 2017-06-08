@@ -1,0 +1,27 @@
+language: php
+
+dist: trusty
+sudo: required
+
+jdk:
+  - oraclejdk8
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+php:
+  - '5.6'
+  - '7.0'
+  - '7.1'
+  - nightly
+
+before_install: composer install
+
+addons:
+  sonarqube:
+    organization: "sigee-github"
+    token:
+      secure: $SONAR_TOKEN # encrypted value of your token
+script:
+  - phpunit
+  # other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner
