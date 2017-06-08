@@ -6,9 +6,23 @@ use PHPUnit\Framework\TestCase;
 
 class RouterTest extends TestCase
 {
-    function testNothing()
+    /** @var Router */
+    private $router;
+
+    function setUp()
     {
-        $this->assertTrue(true);
+        parent::setUp();
+        $this->router = new Router();
     }
 
+    function tearDown()
+    {
+        parent::tearDown();
+        $this->router = null;
+    }
+
+    function testShouldHaveAGetMethod()
+    {
+        $this->router->get(null, null);
+    }
 }
