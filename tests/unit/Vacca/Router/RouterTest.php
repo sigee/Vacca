@@ -30,4 +30,10 @@ class RouterTest extends TestCase
     {
         $this->router->handle(null);
     }
+
+    function testHandleShouldReturnWithAResponse()
+    {
+        $response = $this->router->handle(null);
+        $this->assertInstanceOf(Response::class, $response);
+    }
 }

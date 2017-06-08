@@ -19,6 +19,6 @@ class Router
      */
     public function handle($request)
     {
-        return null;
+        return new Response();
     }
 }
