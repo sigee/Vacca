@@ -28,12 +28,25 @@ class RouterTest extends TestCase
 
     function testShouldHaveAHandleMethod()
     {
+        $_SERVER['REQUEST_URI'] = '';
+        $_SERVER['REQUEST_METHOD'] = '';
         $this->router->handle(null);
     }
 
     function testHandleShouldReturnWithAResponse()
     {
-        $response = $this->router->handle(null);
+        $stubRequest = $this->createMock(Request::class);
+        $response = $this->router->handle($stubRequest);
         $this->assertInstanceOf(Response::class, $response);
+    }
+
+    function testHandleShouldCallMethodRelatedToUri()
+    {
+        $called = false;
+        $this->router->get('/', function () use (&$called) { $called = true; });
+        $_SERVER['REQUEST_URI'] = '/';
+        $_SERVER['REQUEST_METHOD'] = 'get';
+        $this->router->handle(null);
+        $this->assertTrue($called);
     }
 }

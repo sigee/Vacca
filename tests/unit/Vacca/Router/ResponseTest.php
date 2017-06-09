@@ -25,4 +25,9 @@ class ResponseTest extends TestCase
     {
         $this->response->send();
     }
+
+    function testShouldHaveAGetBodyMethod()
+    {
+        $this->response->getBody();
+    }
 }

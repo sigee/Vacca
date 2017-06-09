@@ -24,7 +24,9 @@ class Request
         }
         $this->uri = $server['REQUEST_URI'];
         $this->method = $server['REQUEST_METHOD'];
-        $this->headers = getallheaders();
+        if (function_exists('getallheaders')) {
+            $this->headers = getallheaders();
+        }
     }
 
     /**

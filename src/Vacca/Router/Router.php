@@ -7,7 +7,7 @@ class Router
     /**
      * @var Route[]
      */
-    private $routes;
+    private $routes = [];
 
     /**
      * @param string $uri
