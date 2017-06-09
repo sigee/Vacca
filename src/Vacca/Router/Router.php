@@ -22,8 +22,18 @@ class Router
      * @param Request $request
      * @return Response
      */
-    public function handle($request)
+    public function handle($request = null)
     {
-        return new Response();
+        if (is_null($request)) {
+            $request = new Request();
+        }
+        $response = new Response();
+        foreach ($this->routes as $route) {
+            if ($route->getUri() == $request->getUri()) {
+                $result = call_user_func($route->getMethod());
+                $response->setBody($result);
+            }
+        }
+        return $response;
     }
 }
