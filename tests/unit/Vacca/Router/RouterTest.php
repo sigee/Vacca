@@ -43,8 +43,22 @@ class RouterTest extends TestCase
     function testHandleShouldCallMethodRelatedToUri()
     {
         $called = false;
-        $this->router->get('/', function () use (&$called) { $called = true; });
+        $this->router->get('/', function () use (&$called) {
+            $called = true;
+        });
         $_SERVER['REQUEST_URI'] = '/';
+        $_SERVER['REQUEST_METHOD'] = 'get';
+        $this->router->handle(null);
+        $this->assertTrue($called);
+    }
+
+    function testHandleShouldIgnoreQueryParams()
+    {
+        $called = false;
+        $this->router->get('/', function () use (&$called) {
+            $called = true;
+        });
+        $_SERVER['REQUEST_URI'] = '/?params=something';
         $_SERVER['REQUEST_METHOD'] = 'get';
         $this->router->handle(null);
         $this->assertTrue($called);

@@ -29,11 +29,21 @@ class Router
         }
         $response = new Response();
         foreach ($this->routes as $route) {
-            if ($route->getUri() == $request->getUri()) {
+            $requestUriWithoutParameters = $this->ignoreParameters($request->getUri());
+            if ($route->getUri() == $requestUriWithoutParameters) {
                 $result = call_user_func($route->getMethod());
                 $response->setBody($result);
             }
         }
         return $response;
+    }
+
+    /**
+     * @param string $uri
+     * @return string
+     */
+    private function ignoreParameters($uri)
+    {
+        return explode('?', $uri)[0];
     }
 }
