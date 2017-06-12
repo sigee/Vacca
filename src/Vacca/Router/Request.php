@@ -22,10 +22,10 @@ class Request
         if (is_null($server)) {
             $server = $_SERVER;
         }
-        $this->uri = $server['REQUEST_URI'];
-        $this->method = $server['REQUEST_METHOD'];
+        $this->setUri($server['REQUEST_URI']);
+        $this->setMethod($server['REQUEST_METHOD']);
         if (function_exists('getallheaders')) {
-            $this->headers = getallheaders();
+            $this->setHeaders(getallheaders());
         }
     }
 

@@ -15,8 +15,8 @@ class Route
 
     function __construct($uri, $method)
     {
-        $this->uri = $uri;
-        $this->method = $method;
+        $this->setUri($uri);
+        $this->setMethod($method);
     }
 
     /**
