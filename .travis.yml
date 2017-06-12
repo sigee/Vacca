@@ -22,6 +22,6 @@ addons:
     token:
       secure: $SONAR_TOKEN # encrypted value of your token
 script:
-  - phpunit
+  - $TRAVIS_BUILD_DIR/vendor/bin/phpunit
   # other script steps might be done before running the actual SonarQube analysis
   - sonar-scanner
